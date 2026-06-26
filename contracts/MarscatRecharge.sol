@@ -48,6 +48,12 @@ contract MarscatRecharge is Ownable, ReentrancyGuard, Pausable {
         uint256         duration
     );
 
+    event TokenWithdrawn(
+        address indexed token,
+        address indexed to,
+        uint256         amount
+    );
+
     // ─── Constructor ─────────────────────────────────────────────
 
     constructor() Ownable(msg.sender) {}
@@ -151,6 +157,7 @@ contract MarscatRecharge is Ownable, ReentrancyGuard, Pausable {
         uint256 balance = IERC20(token).balanceOf(address(this));
         require(amount <= balance, "Insufficient contract balance");
         IERC20(token).safeTransfer(to, amount);
+        emit TokenWithdrawn(token, to, amount);
     }
 
     /**
