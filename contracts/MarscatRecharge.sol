@@ -80,7 +80,7 @@ contract MarscatRecharge is Ownable, ReentrancyGuard, Pausable {
         // Update recharge record
         RechargeRecord storage record = rechargeRecords[rechargeAddress];
 
-        if (record.expiredAt == 0 || block.timestamp > record.expiredAt) {
+        if (record.expiredAt == 0 || block.timestamp >= record.expiredAt) {
             // No record or already expired: calculate from current time
             record.expiredAt = block.timestamp + duration;
         } else {
