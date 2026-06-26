@@ -65,17 +65,20 @@ contract MarscatRecharge is Ownable, ReentrancyGuard, Pausable {
      * @param packageId Package type
      * @param token Recharge token address
      * @param rechargeAddress Recharge address (the address that receives the subscription benefit)
+     * @param maxAmount Maximum amount the caller is willing to pay (slippage protection)
      */
     function recharge(
         uint8   packageId,
         address token,
-        address rechargeAddress
+        address rechargeAddress,
+        uint256 maxAmount
     ) external nonReentrant whenNotPaused {
         require(rechargeAddress != address(0), "Invalid recharge address");
         require(rechargeAddress.code.length == 0, "Cannot recharge to contract address");
 
         uint256 amount = packagePrices[packageId][token];
         require(amount > 0, "Token not supported for this package");
+        require(amount <= maxAmount, "Price exceeds maximum amount");
 
         uint256 duration = packageDurations[packageId];
         require(duration > 0, "Package duration not set");
