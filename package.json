@@ -7,7 +7,16 @@
     "test": "hardhat test",
     "deploy:bsc": "hardhat run scripts/deploy.ts --network bsc",
     "deploy:bscTestnet": "hardhat run scripts/deploy.ts --network bscTestnet",
-    "deploy:local": "hardhat run scripts/deploy.ts --network localhost"
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "add-token:bsc": "hardhat run scripts/add-token.ts --network bsc",
+    "add-token:bscTestnet": "hardhat run scripts/add-token.ts --network bscTestnet",
+    "add-token:local": "hardhat run scripts/add-token.ts --network localhost",
+    "list-tokens:bsc": "hardhat run scripts/list-tokens.ts --network bsc",
+    "list-tokens:bscTestnet": "hardhat run scripts/list-tokens.ts --network bscTestnet",
+    "list-tokens:local": "hardhat run scripts/list-tokens.ts --network localhost",
+    "disable-token:bsc": "hardhat run scripts/disable-token.ts --network bsc",
+    "disable-token:bscTestnet": "hardhat run scripts/disable-token.ts --network bscTestnet",
+    "disable-token:local": "hardhat run scripts/disable-token.ts --network localhost"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
