@@ -55,11 +55,26 @@ npm run disable-token:bsc                 # 执行
 
 ## 查看当前代币
 
-列出合约中配置过的所有代币及当前价格（价格为 0 或超高值即为不可用）。此操作只读，不发交易。
+查询指定代币在合约中的当前价格与状态。此操作只读，不发交易。
+
+要查询的代币（`.env`，二选一）：
+
+```bash
+CHECK_TOKENS=0xAAA...,0xBBB...   # 逗号分隔多个地址；留空则回退下一行
+# 回退：自动使用 USDT_ADDRESS + NEW_TOKEN_ADDRESS
+```
+
+执行：
 
 ```bash
 npm run list-tokens:bsc
 ```
+
+每个代币会标为三种状态之一：
+
+- `[active]` 可支付，显示当前价格
+- `[not accepted]` 价格为 0，未配置
+- `[disabled]` 价格超高，已停用
 
 ---
 
